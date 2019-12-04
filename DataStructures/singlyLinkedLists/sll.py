@@ -42,6 +42,7 @@ class Singlylinkedlist:
             current = current.next
         self.tail = newTail
         self.tail.next = None
+        self.length -= 1
         return current
 
     def shift(self):
@@ -65,6 +66,66 @@ class Singlylinkedlist:
         self.length += 1
         return self
 
+    def get(self, index):
+        if index < 0 or self.length == 0 or index >= self.length:
+            return False
+
+        counter = 0
+        current = self.head
+        while counter < index:
+            current = current.next
+            counter += 1
+
+        return current
+
+    def set(self, index, value):
+        current = self.get(index)
+        if current:
+            current.value = value
+            return self
+
+        return False
+
+    def insert(self, index, value):
+
+        if index < 0 or self.length == 0 or index > self.length:
+            return False
+
+        if index == self.length:
+            self.push(value)
+
+        elif index == 0:
+            self.unshift(value)
+
+        else:
+            newNode = Node(value)
+            prev = self.get(index-1)
+            newNode.next = prev.next
+            prev.next = newNode
+
+        self.length += 1
+        return self
+
+    def remove(self, index):
+
+        if index < 0 or self.length == 0 or index >= self.length:
+            return False
+
+        # edge case scenarios:
+
+        if index == 0:
+            return self.shift()
+
+        if index == self.length-1:
+            return self.pop()
+
+        # non-edge case scenarios:
+        prev = self.get(index-1)
+        current = prev.next
+        prev.next = current.next
+        self.length -= 1
+        return current
+
 
 SLL = Singlylinkedlist()
 
@@ -80,5 +141,13 @@ SLL.shift()
 print('post-shift', SLL.__str__())
 SLL.unshift(15)
 print('post-unshift', SLL.__str__())
-# print(SLL.length)
-# print(SLL.tail.value)
+val = SLL.get(1)
+print('getting an item at index 1:', val.value)
+SLL.set(1, 39)
+print('post-value change from 7 to 39', SLL.__str__())
+index = 0
+value = 45
+SLL.insert(index, value)
+print(f'post-insert {value} at index {index}', SLL.__str__())
+SLL.remove(index)
+print(f'post-remove {value} at index {index}', SLL.__str__())
