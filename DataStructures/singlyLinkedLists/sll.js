@@ -155,6 +155,34 @@ class singlylinkedlist {
         return removed
 
     }
+
+    reverse() {
+
+        if (!this.head) return null
+
+        if (this.length === 1) return this
+
+        let prev = null
+        let current = this.head
+        let nextNode = current.next
+        this.head = this.tail
+        this.tail = current
+
+        while (current.next) {
+            current.next = prev
+            prev = current
+            current = nextNode
+            nextNode = current.next
+        }
+
+        current.next = prev
+
+        return this
+
+
+
+    }
+
     get_str() {
 
         if (!this.head) {
@@ -169,8 +197,6 @@ class singlylinkedlist {
         }
 
         return str
-
-
 
         // }
     }
@@ -212,5 +238,16 @@ console.log(`should insert ${value} at index ${index}`, sll.get_str())
 removed = sll.remove(index)
 
 console.log(`should remove ${removed.value} at index ${index}`, sll.get_str())
+
+sll.push(17)
+sll.push(19)
+sll.push(21)
+sll.push(23)
+
+console.log('pre-reverse', sll.get_str())
+
+sll.reverse()
+
+console.log('should reverse the sll', sll.get_str())
 
 
