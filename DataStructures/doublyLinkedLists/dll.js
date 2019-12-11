@@ -13,18 +13,24 @@ class DoublyLinkedList {
     this.length = 0;
   }
   push(val) {
-    var newNode = new Node(val);
-    if (this.length === 0) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.tail.next = newNode;
-      newNode.prev = this.tail;
-      this.tail = newNode;
+    newNode = new Node(val)
+    if (!this.head) {
+      this.head = newNode
+      this.tail = newNode
     }
-    this.length++;
-    return this;
+    else {
+
+      newNode.prev = this.tail
+      this.tail.next = newNode
+      this.tail = newNode
+
+    }
+    this.length++
+    return this
+
+
   }
+
   pop() {
     if (!this.head) return undefined;
     var poppedNode = this.tail;
@@ -122,10 +128,10 @@ class DoublyLinkedList {
     return true;
   }
 
-  remove(index){
-      if (index<0 || index> this.length) return false;
-      if(the index == 0, shift)
-      
+  remove(index) {
+    if (index < 0 || index > this.length) return false;
+    if (the index == 0, shift)
+
 
 
   }
