@@ -54,5 +54,5 @@ print(dll.tail.val)
 print(dll.length)
 
 print('popped Node', dll.pop().val)
-print('pop length', dll.length)
-print('pop tail', dll.tail.val)
+print('popped length', dll.length)
+print('popped tail', dll.tail.val)
