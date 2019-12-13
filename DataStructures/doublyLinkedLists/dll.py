@@ -82,7 +82,7 @@ class DoublyLinkedList:
 
     def get(self, index):
         if index < 0 or index >= self.length:
-            return 'invalid index'
+            return None
 
         if index < (self.length/2):
             counter = 0
@@ -97,6 +97,13 @@ class DoublyLinkedList:
                 node = node.prev
                 counter -= 1
         return node
+
+    def set(self, index, val):
+        node = self.get(index)
+        if node:
+            node.val = val
+            return True
+        return False
 
 
 dll = DoublyLinkedList()
@@ -121,3 +128,5 @@ print('new length should be 4', dll.length)
 print('dll.__str__', dll.__str__())
 print('node at index 2', dll.get(2).val)
 print('node at index 1', dll.get(1).val)
+print('setting node at idx 1 to 9', dll.set(1, 9))
+print('dll.__str__', dll.__str__())
