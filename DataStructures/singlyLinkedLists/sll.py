@@ -34,7 +34,6 @@ class Singlylinkedlist:
         # edge case if the SLL is empty:
         if self.length == 0:
             return None
-
         current = self.head
         newTail = current
         while current.next:
@@ -126,10 +125,36 @@ class Singlylinkedlist:
         self.length -= 1
         return current
 
+    def reverse(self):
+        if not self.head:
+            return null
+        if self.length == 1:
+            return self
+
+        # all the pointers start at the same place
+        current = self.head
+        prev = None
+        nextNode = None
+
+        # swap head and tail
+        self.head = self.tail
+        self.tail = current
+
+        while current.next:
+            nextNode = current.next
+            current.next = prev
+            prev = current
+            current = nextNode
+
+        current.next = prev
+
 
 SLL = Singlylinkedlist()
 
 SLL.push(5)
+SLL.reverse()
+print('reversed linked list', SLL.__str__())
+
 SLL.push(7)
 SLL.push(9)
 SLL.push(11)
@@ -151,3 +176,5 @@ SLL.insert(index, value)
 print(f'post-insert {value} at index {index}', SLL.__str__())
 SLL.remove(index)
 print(f'post-remove {value} at index {index}', SLL.__str__())
+SLL.reverse()
+print('reversed linked list', SLL.__str__())
