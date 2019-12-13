@@ -105,6 +105,44 @@ class DoublyLinkedList:
             return True
         return False
 
+    def insert(self, index, val):
+        if index < 0 or index > self.length:
+            return None
+
+        new_node = Node(val)
+
+        if self.length == index:
+            self.push(val)
+        elif index == 0:
+            self.unshift(val)
+        else:
+            current = self.get(index)
+            before = current.prev
+            before.next = new_node
+            new_node.prev = before
+            new_node.next = current
+            current.prev = new_node
+        self.length += 1
+        return self
+
+    def remove(self, index):
+        if index < 0 or index >= self.length or self.length == 0:
+            return None
+        if self.length-1 == index:
+            self.pop()
+        elif index == 0:
+            self.shift()
+        else:
+            removedNode = self.get(index)
+            before = removedNode.prev
+            after = removedNode.next
+            before.next = after
+            after.prev = before
+            removedNode.prev = None
+            removedNode.next = None
+        self.length -= 1
+        return removedNode
+
 
 dll = DoublyLinkedList()
 dll.push(2)
@@ -112,6 +150,7 @@ dll.push(4)
 dll.push(6)
 dll.push(8)
 dll.push(10)
+dll2 = DoublyLinkedList()
 
 print(dll.head.val)
 print(dll.tail.val)
@@ -129,4 +168,6 @@ print('dll.__str__', dll.__str__())
 print('node at index 2', dll.get(2).val)
 print('node at index 1', dll.get(1).val)
 print('setting node at idx 1 to 9', dll.set(1, 9))
+print('inserting node at idx 1 to 12', dll.insert(1, 12))
+print('removing node at idx 2', dll.remove(2).val)
 print('dll.__str__', dll.__str__())
