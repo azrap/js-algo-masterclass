@@ -28,6 +28,25 @@ class Stack {
 
 
     }
+
+    pop() {
+
+        let poppedNode = this.first
+        if (!poppedNode) {
+            return undefined
+        }
+        if (this.size === 1) {
+            this.first = null
+            this.last = null
+        }
+        else {
+            this.first = poppedNode.next
+            poppedNode.next = null
+
+        }
+        this.size -= 1
+        return poppedNode
+    }
 }
 
 stack = new Stack()
@@ -35,4 +54,6 @@ stack.push(5)
 stack.push(6)
 stack.push(7)
 stack.push(8)
+console.log(stack)
+stack.pop()
 console.log(stack)
