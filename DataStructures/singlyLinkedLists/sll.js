@@ -18,6 +18,22 @@ class singlylinkedlist {
 
     }
 
+    get_str() {
+
+        if (!this.head) {
+            return "there are no nodes"
+        }
+
+        let str = "these are the nodes in this SLL: "
+        let current = this.head
+        while (current) {
+            str += `${current.value}, `
+            current = current.next
+        }
+
+        return str
+    }
+
     push(value) {
         var newNode = new Node(value)
         if (!this.head) {
@@ -183,23 +199,7 @@ class singlylinkedlist {
 
     }
 
-    get_str() {
 
-        if (!this.head) {
-            return "there are no nodes"
-        }
-
-        let str = "these are the nodes in this SLL: "
-        let current = this.head
-        while (current) {
-            str += `${current.value}, `
-            current = current.next
-        }
-
-        return str
-
-        // }
-    }
 
 
 }
