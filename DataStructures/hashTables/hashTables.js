@@ -29,14 +29,17 @@ class HashTable {
     get(key) {
         //first get the hash
         let index = this._hash(key)
-        // then go decode it i.e retrieve the 
+        // then retrieve the array of key/val pairs at that index/hash
         let array = this.keyMap[index]
+
         if (!array) return undefined
 
+        //grab the element with the desired key
         let element = array.filter(element => element[0] === key)
 
         if (!element) return undefined
 
+        //return the key
         return element[0]
 
 
