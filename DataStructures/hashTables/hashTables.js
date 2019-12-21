@@ -25,18 +25,23 @@ class HashTable {
         return keyHash
     }
 
+    // get a key at an index in the hash 
     get(key) {
+        //first get the hash
         let index = this._hash(key)
+        // then go decode it i.e retrieve the 
         let array = this.keyMap[index]
         if (!array) return undefined
 
         let element = array.filter(element => element[0] === key)
 
+        if (!element) return undefined
+
         return element[0]
 
 
     }
-
+    // retrieve all the keys for the hash table
     keys() {
         let keys = []
         for (let i = 0; i < this.keyMap.length; i++) {
@@ -50,9 +55,12 @@ class HashTable {
         return keys
 
     }
+    // retrieve all the values for the hash table
     values() {
         let values = []
+        // iterate over the whole keymap array to find the non empty ones
         for (let i = 0; i < this.keyMap.length; i++) {
+            // then, iterate over the non-empty arrays to grab all the keys of the key/value pair
             if (this.keyMap[i]) {
                 for (let j = 0; j < this.keyMap[i].length; j++) {
                     values.push(this.keyMap[i][j][1])
