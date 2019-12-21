@@ -58,7 +58,9 @@ class HashTable {
     // retrieve all the values for the hash table
     values() {
         let values = []
+        // iterate over the whole keymap array to find the non empty ones
         for (let i = 0; i < this.keyMap.length; i++) {
+            // then, iterate over the non-empty arrays to grab all the keys of the key/value pair
             if (this.keyMap[i]) {
                 for (let j = 0; j < this.keyMap[i].length; j++) {
                     values.push(this.keyMap[i][j][1])
