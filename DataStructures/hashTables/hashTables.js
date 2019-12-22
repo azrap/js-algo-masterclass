@@ -3,6 +3,7 @@ class HashTable {
         this.keyMap = new Array(size)
     }
 
+
     _hash(key) {
         let total = 0
         let WEIRD_PRIME = 31
@@ -14,6 +15,7 @@ class HashTable {
         return total
 
     }
+    // add a new key/value pair to the hash table
     set(key, value) {
         let keyHash = this._hash(key)
         let pair = [key, value]
